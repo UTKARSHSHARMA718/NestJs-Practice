@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_DATABASE="crud"
+
+  mogno-express:
+    container_name: mongo_express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGO_SERVER=mongo
+      - ME_CONFIG_MONGO_PORT=27017
+    depends_on:
+      - mongo
+    image: mongo-express
